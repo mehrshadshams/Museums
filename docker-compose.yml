@@ -1,0 +1,29 @@
+version: '2'
+services:
+    rabbit:
+        hostname: rabbit
+        image: rabbitmq:latest
+        environment:
+            - RABBITMQ_DEFAULT_USER=admin
+            - RABBITMQ_DEFAULT_PASS=mypass
+        ports:
+            - "5673:5672"
+
+    service:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        links:
+            - rabbit
+            - database
+        depends_on:
+            - rabbit
+            - database
+        ports:
+            - "8080:8080"
+
+    database:
+        hostname: mongo
+        image: mongo:latest
+        ports:
+            - "27018:27017"
