@@ -12,7 +12,7 @@ db = client.mongodb_test
 collection = db.museums
 
 un_city_pop = pd.read_csv(
-    "https://raw.githubusercontent.com/mehrshadshams/Museums/master/UNdata_Export_20190225_182736318.csv")
+    "https://raw.githubusercontent.com/mehrshadshams/Museums/master/data.csv")
 un_city_pop = un_city_pop[un_city_pop['Sex'] == 'Both Sexes']
 un_city_pop.City = un_city_pop.City.str.lower()
 
